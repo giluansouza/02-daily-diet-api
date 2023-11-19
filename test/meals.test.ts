@@ -122,14 +122,14 @@ describe('Meals routes', () => {
 
     const listMealsResponse = await request(app.server)
       .get('/meals')
-      .set('Cookie', userId)
+      .set('Cookie', cookieString)
       .expect(200)
 
     const mealId = listMealsResponse.body.meals[0].id
 
     await request(app.server)
       .get(`/meals/${mealId}`)
-      .set('Cookie', userId)
+      .set('Cookie', cookieString)
       .expect('Content-Type', /json/)
       .expect(200)
   })
